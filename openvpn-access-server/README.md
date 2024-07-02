@@ -1,9 +1,36 @@
+# Install OpenVPN Access serverr
+
 Signup to Openvpn and download OpenVPN access server
+
 https://myaccount.openvpn.com/signup/as
 
+Required
+- Centos 7
+- Disable Selinux
+- Config sysctl
+```
+cat >/etc/sysctl.d/openvpn.conf <<EOL
+net.ipv4.ip_forward = 1
+EOL
+```
+- Yum package
+```
+yum install -y epel-release vim curl wget net-tools telnet && yum update -y
+systemctl disable --now firewalld
+```
 
+Cài đặt theo hướng dẫn của trang chủ
+```
+yum -y install https://as-repository.openvpn.net/as-repo-centos7.rpm
+yum -y install openvpn-as
+```
 
-# Hướng dẫn unlock OpenVPN Access server
+Sau khi cài đặt xong, sử dụng user/password ở bước cài đặt để đang nhập trang quản trị.
+<img width="751" alt="image" src="https://github.com/anhln12/openvpn/assets/18412583/2119fda1-f991-4041-9ee0-38c5599624cf">
+
+<img width="749" alt="image" src="https://github.com/anhln12/openvpn/assets/18412583/dcae90c1-adc0-4568-99e8-5696e18fc624">
+
+# Guide unlock OpenVPN Access server
 
 Tắt hết openvpn service
 ```
