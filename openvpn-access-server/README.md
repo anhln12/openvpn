@@ -285,3 +285,5 @@ See the Release Notes for this release at:
 Đăng nhập lại openvpn sẽ thấy license đã lên 2048 user
 <img width="748" alt="image" src="https://github.com/anhln12/openvpn/assets/18412583/bdc06291-5bd7-47e8-8448-f308b0de85cb">
 
+refe: https://devopsvn.xyz/2021/07/29/huong-dan-cai-dat-va-unlock-openvpn-access-server/
+
