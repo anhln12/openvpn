@@ -3,9 +3,8 @@ https://myaccount.openvpn.com/signup/as
 
 
 
+# Hướng dẫn unlock OpenVPN Access server
 
-**Hướng dẫn unlock OpenVPN Access server
-**
 Tắt hết openvpn service
 ```
 systemctl stop openvpnas
