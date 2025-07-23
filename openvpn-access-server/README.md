@@ -337,11 +337,12 @@ server {
     listen 80 ;
         server_name  openvpn.xxx.com;
     return 404; # managed by Certbot
-
-
 }
 ```
 
+Lưu ý đổi hostname trong https://openvpn.xxx.vn/admin/network_settings
+
+thay ip trong Hostname or IP Address bằng subdomain, thực hiện save setting
 
 refe: https://devopsvn.xyz/2021/07/29/huong-dan-cai-dat-va-unlock-openvpn-access-server/
 
