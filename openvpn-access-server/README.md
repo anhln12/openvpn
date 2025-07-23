@@ -285,5 +285,63 @@ See the Release Notes for this release at:
 Đăng nhập lại openvpn sẽ thấy license đã lên 2048 user
 <img width="748" alt="image" src="https://github.com/anhln12/openvpn/assets/18412583/bdc06291-5bd7-47e8-8448-f308b0de85cb">
 
+
+# Cấu hình sub domain
+
+openvpn.xxx.com.conf
+```
+upstream openvpn {
+        #ip_hash;
+        #hash $http_cf_connecting_ip;
+                server 127.0.0.1:943 max_fails=3 fail_timeout=30s;
+               #server 10.30.0.39:3100 max_fails=3 fail_timeout=30s;
+        }
+
+server {
+    listen       443 ssl ;#default_server;
+        server_name  openvpn.xxx.com;
+    if ($scheme = http) {
+        return 301 https://$server_name$request_uri;
+        }
+    ssl_certificate /etc/letsencrypt/live/openvpn.xxx.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/openvpn.xxx.com/privkey.pem; # managed by Certbot
+         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+       # proxy_read_timeout 600;
+       # proxy_connect_timeout 600;
+       # proxy_send_timeout 600;
+
+    location / {
+        #include proxy_params;
+        #proxy_set_header Host $host;
+        proxy_hide_header X-Powered-By;
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Credentials' 'true';
+            add_header 'Access-Control-Allow-Methods' 'OPTIONS,GET,POST,PUT, DELETE';
+            add_header 'Access-Control-Allow-Headers' 'authorization,Accept,Accept-Language,Content-Language,Content-Type';
+            return 204;
+        }
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        proxy_pass https://openvpn ;
+    }
+
+error_page   500 502 503 504  /50x.html;
+}
+
+server {
+    if ($host = openvpn.xxx.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80 ;
+        server_name  openvpn.xxx.com;
+    return 404; # managed by Certbot
+
+
+}
+```
+
+
 refe: https://devopsvn.xyz/2021/07/29/huong-dan-cai-dat-va-unlock-openvpn-access-server/
 
