@@ -1,4 +1,4 @@
-# Install OpenVPN Access serverr
+# Install OpenVPN Access server
 
 Signup to Openvpn and download OpenVPN access server
 
