@@ -52,12 +52,12 @@ ufw allow 1194/udp   # UDP VPN (Mặc định)
   - Mặc định, Linux sẽ chặn việc chuyển tiếp gói tin giữa các interface (Ví dụ từ interface ảo tun0 của VPN sang interface vật lý eth0 của Internet/LAN. Nếu không bật, Client có thể kết nối thành công sang tới VPN nhuwg không thể truy cập Ineternet hoặc không ping được các máy khác trong nội bộ
   - OpenVPN AS thường tự động bật NAT/Routing. Tuy nhiên, bạn nên kiểm tra file /etc/sysctl.conf xem dòng net.ipv4.ip_forward = 1 đã được bật chưa
   ```
-1. Tạo file cấu hình sysctl riêng cho OpenVPN
-cat >/etc/sysctl.d/openvpn.conf <<EOL
-net.ipv4.ip_forward = 1
-EOL
+  1. Tạo file cấu hình sysctl riêng cho OpenVPN
+  cat >/etc/sysctl.d/openvpn.conf <<EOL
+  net.ipv4.ip_forward = 1
+  EOL
 
-2. Áp dụng thay đổi ngay lập tức mà không cần reboot
+  2. Áp dụng thay đổi ngay lập tức mà không cần reboot
 sysctl -p /etc/sysctl.d/openvpn.conf
 
 3. Kiểm tra lại đã nhận cấu hình chưa
