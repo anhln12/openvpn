@@ -58,10 +58,10 @@ ufw allow 1194/udp   # UDP VPN (Mặc định)
   EOL
 
   2. Áp dụng thay đổi ngay lập tức mà không cần reboot
-sysctl -p /etc/sysctl.d/openvpn.conf
+  sysctl -p /etc/sysctl.d/openvpn.conf
 
-3. Kiểm tra lại đã nhận cấu hình chưa
-root@monitor:/etc/netplan# sysctl net.ipv4.ip_forward
-net.ipv4.ip_forward = 1
+  3. Kiểm tra lại đã nhận cấu hình chưa
+  root@monitor:/etc/netplan# sysctl net.ipv4.ip_forward
+  net.ipv4.ip_forward = 1
   ```
  
