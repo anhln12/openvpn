@@ -13,6 +13,11 @@ cat >/etc/sysctl.d/openvpn.conf <<EOL
 net.ipv4.ip_forward = 1
 EOL
 ```
+
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
+sysctl -p
+
 - Yum package
 ```
 yum install -y epel-release vim curl wget net-tools telnet && yum update -y
